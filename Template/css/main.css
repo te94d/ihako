@@ -25,59 +25,40 @@ section {
   z-index: 1030;
 }
 
-@media (min-width: 992px){
-  .navbar-expand-lg {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-  }
+.navbar-expand-lg {
+  flex-wrap: nowrap;
+  justify-content: flex-start;
 }
 
-.navbar > .container, .navbar > .container-fluid, .navbar > .container-sm, .navbar > .container-md, .navbar > .container-lg, .navbar > .container-xl, .navbar > .container-xxl {
+.navbar>.container,
+.navbar>.container-fluid,
+.navbar>.container-sm,
+.navbar>.container-md,
+.navbar>.container-lg,
+.navbar>.container-xl,
+.navbar>.container-xxl {
   display: flex;
   flex-wrap: inherit;
   align-items: center;
   justify-content: space-between;
 }
 
-@media (min-width: 576px){
-  .container-sm, .container {
-    max-width: 540px;
-}
-}
-
-@media (min-width: 768px){
-  .container-md, .container-sm, .container {
-    max-width: 720px;
-}
+.container-xxl,
+.container-xl,
+.container-lg,
+.container-md,
+.container-sm,
+.container {
+  max-width: 1320px;
 }
 
-@media (min-width: 992px){
-.container-lg, .container-md, .container-sm, .container {
-    max-width: 960px;
-}
-}
-
-@media (min-width: 1200px){
-.container-xl, .container-lg, .container-md, .container-sm, .container {
-    max-width: 1140px;
-}
-}
-
-@media (min-width: 1400px){
-  .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
-    max-width: 1320px;
-}
-}
-
-
-
-
-
-
-
-
-
-.container, .container-fluid, .container-xxl, .container-xl, .container-lg, .container-md, .container-sm {
+.container,
+.container-fluid,
+.container-xxl,
+.container-xl,
+.container-lg,
+.container-md,
+.container-sm {
   width: 100%;
   padding-right: var(--bs-gutter-x, 0.75rem);
   padding-left: var(--bs-gutter-x, 0.75rem);
@@ -98,13 +79,15 @@ section {
   color: rgba(0, 0, 0, 0.65);
   border-color: rgba(255, 255, 255, 0.1);
 }
-@media (min-width: 992px){
-  .navbar-expand-lg .navbar-toggler {
-    display: none;
-}
+
+.navbar-expand-lg .navbar-toggler {
+  display: none;
 }
 
-button:not(:disabled), [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled) {
+button:not(:disabled),
+[type=button]:not(:disabled),
+[type=reset]:not(:disabled),
+[type=submit]:not(:disabled) {
   cursor: pointer;
 }
 
@@ -132,11 +115,9 @@ button {
   font-family: inherit;
 }
 
-@media (min-width: 992px){
-  .navbar-expand-lg .navbar-collapse {
-    display: flex !important;
-    flex-basis: auto;
-}
+.navbar-expand-lg .navbar-collapse {
+  display: flex !important;
+  flex-basis: auto;
 }
 
 .navbar-collapse {
@@ -145,18 +126,13 @@ button {
   align-items: center;
 }
 
-
-@media (min-width: 992px){
-  .navbar-expand-lg .navbar-nav {
-    flex-direction: row;
-}
+.navbar-expand-lg .navbar-nav {
+  flex-direction: row;
 }
 
-@media (min-width: 992px){
-  .py-lg-0 {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-}
+.py-lg-0 {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 .ms-auto {
@@ -172,11 +148,9 @@ button {
   list-style: none;
 }
 
-@media (min-width: 992px){
-  .navbar-expand-lg .navbar-nav .nav-link {
-    padding-right: 0.5rem;
-    padding-left: 0.5rem;
-}
+.navbar-expand-lg .navbar-nav .nav-link {
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
 }
 
 .nav-link {
