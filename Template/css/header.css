@@ -1,7 +1,7 @@
 #mainNav {
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background-color: #9b9b9b;
+  background-color: #bfb79c;
   box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
 }
 
@@ -42,8 +42,8 @@
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   border: none;
-  background-color: #9b9b9b;
-  /*透明ver background-color: transparent;*/
+  /*透明verbackground-color: #bfb79c;*/
+  background-color: transparent;
   transition: padding-top 0.3s ease-in-out, padding-bottom 0.3s ease-in-out;
   box-shadow: none;
 }
@@ -104,4 +104,18 @@
 
 #mainNav .navbar-nav .nav-item .nav-link:hover {
   color: #ffc800;
+}
+
+/*header*/
+header.masthead {
+  padding-top: 25rem;
+  padding-bottom: 25rem;
+  text-align: center;
+  color: #fff;
+  /* background-image: url(../assets/img/header-bg1.jpg); */
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)), url(../img/top.png);
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+  background-size: cover;
 }
