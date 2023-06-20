@@ -15,8 +15,10 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS-->
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+        <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
         <link href="css/main.css" rel="stylesheet" />
         <link href="css/fukumitsu.css" rel="stylesheet" />
+        <link href="css/slider.css" rel="stylesheet" />
         <link href="css/header.css" rel="stylesheet" />
     </head>
     <body id="page-top">
@@ -72,9 +74,9 @@
         <section class="page-section bg-light" id="slider">
             <div class="sliderWrapper swiper">	
                 <ul class="sliderList swiper-wrapper">
-                    <li class="swiper-slide"><img src="img/slider/slider1.png" /></li>
-                    <li class="swiper-slide"><img src="img/slider/slider2.png" /></li>
-                    <li class="swiper-slide"><img src="img/slider/slider3.png" /></li>
+                    <li class="swiper-slide"><img src="img/slider/slider1.png"/></li>
+                    <li class="swiper-slide"><img src="img/slider/slider2.png"/></li>
+                    <li class="swiper-slide"><img src="img/slider/slider3.png"/></li>
                 </ul>
                 <div class="swiper-pagination"></div>
             </div>
@@ -91,5 +93,23 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+		<script type="module">
+			import Swiper from 'https://unpkg.com/swiper@8/swiper-bundle.esm.browser.min.js'
+			const swiper = new Swiper('.swiper', {
+				loop: true,
+				slidesPerView: 2.5,
+				spaceBetween: 70,
+				centerSlide: true,
+                centeredslides: true,
+				pagination: {
+					el: '.swiper-pagination',
+					clickable: true,
+				},
+				// autoplay: {
+				// 	delay:3000 
+				// },
+			});
+		</script>
     </body>
 </html>
