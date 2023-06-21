@@ -95,7 +95,7 @@ form input, form input, textarea {
   width: 100%;
 }
 
-.admin form input, form input, textarea {
+.admin form input, form input, textarea, .admin select {
   margin: 15px auto;
   padding: 8px;
   font-size: 20px;
@@ -113,4 +113,29 @@ form input, form input, textarea {
 .admin .container strong {
   color: #ffc800;
   font-size: 35px;
+}
+
+.member-contents {
+  margin: 50px auto;
+  font-size: 20px;
+  width: 80%;
+  border-collapse: collapse;
+  font-family: Yu Mincho;
+}
+
+.member-contents, .member-contents th, .member-contents td {
+  border-bottom: 1px solid #e0e0e0;
+  border-collapse: collapse;
+}
+
+.member-contents .member-items th, .member-contents .member-items td{
+  padding: 10px;
+}
+
+.member-contents .member-items th {
+  width: 40%;
+}
+
+.member-contents .member-items td {
+  width: 60%;
 }

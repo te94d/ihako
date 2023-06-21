@@ -1,37 +1,151 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>会員ページ｜福満</title>
-  </head>
-  <body>
-    <h3>会員情報</h3>
-    <ul>
-        <li>氏名：{{login_user_info.name}}</li>
-        <li>メールアドレス：{{login_user_info.email}}</li>
-        <li>パスワード：{{login_user_info.password}}</li>
-        <li>住所：{{login_user_info.address}}</li>
-        <li>電話番号：{{login_user_info.phone_num}}</li>
-    </ul>
-    <h3>予約情報</h3>
-    <h4>最近の予約</h4>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>会員ページ｜福満</title>
+  <!-- Favicon-->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <!-- Font Awesome icons (free version)-->
+  <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+  <!-- Google fonts-->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+  <!-- Core theme CSS-->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+  <link href="/static/css/main.css" rel="stylesheet" />
+  <link href="/static/css/fukumitsu.css" rel="stylesheet" />
+  <link href="/static/css/slider.css" rel="stylesheet" />
+  <link href="/static/css/header.css" rel="stylesheet" />
+  <link href="/static/css/footer.css" rel="stylesheet" />
+
+</head>
+
+<body>
+  <!-- Navigation-->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-shrink" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="/fukumitsu/"><img src="/static/img/fukumitsu_logo.png" alt="..." /></a>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+          {% if session == 1 %}
+          <li class="nav-item"><a class="nav-link" href="/reserve/">宿泊予約</a></li>
+          <li class="nav-item"><a class="nav-link" href="/sightseeing/">観光地情報</a></li>
+          <li class="nav-item"><a class="nav-link" href="/memberinfo/">会員情報</a></li>
+          <li class="nav-item"><a class="nav-link" href="/logout/">ログアウト</a></li>
+          {% else %}
+          <li class="nav-item"><a class="nav-link" href="/reserve/">宿泊予約</a></li>
+          <li class="nav-item"><a class="nav-link" href="/sightseeing/">観光地情報</a></li>
+          <li class="nav-item"><a class="nav-link" href="/login/">ログイン</a></li>
+          <li class="nav-item"><a class="nav-link" href="/register/">会員登録</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="page-section">
+    <div class="container">
+      <div class="text-center">
+        <h2 class="section-heading text-uppercase main-font">Member Info</h2>
+        <p class="text-font">会員情報</p>
+      </div>
+      <table class="member-contents">
+        <tr class="member-items">
+          <th>氏名</th>
+          <td>{{login_user_info.name}}</td>
+        </tr>
+        <tr class="member-items">
+          <th>メールアドレス</th>
+          <td>{{login_user_info.email}}</td>
+        </tr>
+        <tr class="member-items">
+          <th>パスワード</th>
+          <td>{{login_user_info.password}}</td>
+        </tr>
+        <tr class="member-items">
+          <th>住所</th>
+          <td>{{login_user_info.address}}</td>
+        </tr>
+        <tr class="member-items">
+          <th>電話番号</th>
+          <td>{{login_user_info.phone_num}}</td>
+        </tr>
+      </table>      
+    </div>
+  </section>
+  <section class="page-section">
+    <div class="container">
+      <div class="text-center">
+        <h2 class="section-heading text-uppercase main-font">Reservation Info</h2>
+        <p class="text-font">予約情報</p>
+      </div>
+      <h4>最近の予約</h4>
       {% if not future_reserve %}
       <p>今後の予約はありません</p>
       {% endif %}
-    <ul>
-      {%for reserve in future_reserve %}
+      <table class="member-contents">
+        {%for reserve in future_reserve %}
+          <tr class="member-items">
+            <th>チェックイン</th>
+            <td>{{reserve.check_in}}</td>
+          </tr>
+          <tr class="member-items">
+            <th>チェックアウト</th>
+            <td>{{reserve.chack_out}}</td>
+          </tr>
+          <tr class="member-items">
+            <th>宿泊人数</th>
+            <td>{{reserve.stay_people}}</td>
+          </tr>
+          <tr class="member-items">
+            <th>お部屋</th>
+            <td>{{reserve.room.name}}</td>
+          </tr>
+          <tr class="member-items">
+            <th>お値段</th>
+            <td>{{reserve.room.price}}</td>
+          </tr>
+        {% endfor %}
+      </table>
+      <a href="/reservedeletecheck/{{reserve.reserve_id}}" class="reserve-del-btn btn btn-border">予約の取消</a>
+    </div>
+  
+    <footer id="footer">
+      <div class="footerWrapper">
+        <div class="footerContainer">
+          <a href="" class="footerTitle">
+            <img src="/static/img/fukumitsu_footerlogo.png" alt="">       
+          </a>
+          <ul class="footerMenu">
+              {% if session == 1 %}
+              <li class="MenuItem"><a href="/reserve/">宿泊予約</a></li>
+              <li class="MenuItem"><a href="/sightseeing/">観光地情報</a></li>
+              <li class="MenuItem"><a href="/memberinfo/">会員情報</a></li>
+              <li class="MenuItem"><a href="/logout/">ログアウト</a></li>
+              {% else %}
+              <li class="MenuItem"><a href="/reserve/">宿泊予約</a></li>
+              <li class="MenuItem"><a href="/sightseeing/">観光地情報</a></li>
+              <li class="MenuItem"><a href="/login/">ログイン</a></li>
+              <li class="MenuItem"><a href="/register/">会員登録</a></li>
+              {% endif %}
+          </ul>
+        </div>
+        <div class="align-items">
+          <div class="snsbtn">
+            <a class="snsitem" href="" target="_blank" aria-label="Twitter"><i class="fab fa-twitter fa-3x"></i></a>
+            <a class="snsitem" href="" target="_blank" aria-label="instagram Profile"><i class="fa-brands fa-instagram fa-3x" data-fa-transform="grow-4"></i></a>
+            <a class="snsitem" href="" aria-label="email"><i class="fa-solid fa-envelope fa-3x"></i></a>
+          </div>
+          <p class="copyright">Copyright &copy; Fukumitsu 2023</p>
+        </div>
+      </div>
+    </footer>
 
-         <li>チェックイン：{{reserve.check_in}}</li>
-         <li>チェックアウト：{{reserve.chack_out}}</li>
-         <li>宿泊人数：{{reserve.stay_people}}</li>
-         <li>部屋の名前：{{reserve.room.name}}</li>
-         <li>値段：{{reserve.room.price}}</li>
-         <a href="/reservedeletecheck/{{reserve.reserve_id}}">予約の取消</a>
+  </section>
+</body>
 
-      {% endfor %}
-    </ul>
-  </body>
 </html>
