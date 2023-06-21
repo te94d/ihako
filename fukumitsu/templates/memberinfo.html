@@ -1,9 +1,37 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>会員ページ｜福満</title>
   </head>
   <body>
-    
+    <h3>会員情報</h3>
+    <ul>
+        <li>氏名：{{login_user_info.name}}</li>
+        <li>メールアドレス：{{login_user_info.email}}</li>
+        <li>パスワード：{{login_user_info.password}}</li>
+        <li>住所：{{login_user_info.address}}</li>
+        <li>電話番号：{{login_user_info.phone_num}}</li>
+    </ul>
+    <h3>予約情報</h3>
+    <h4>最近の予約</h4>
+      {% if not future_reserve %}
+      <p>今後の予約はありません</p>
+      {% endif %}
+    <ul>
+      {%for reserve in future_reserve %}
+
+         <li>チェックイン：{{reserve.check_in}}</li>
+         <li>チェックアウト：{{reserve.chack_out}}</li>
+         <li>宿泊人数：{{reserve.stay_people}}</li>
+         <li>部屋の名前：{{reserve.room.name}}</li>
+         <li>値段：{{reserve.room.price}}</li>
+         <a href="/reservedeletecheck/{{reserve.reserve_id}}">予約の取消</a>
+
+      {% endfor %}
+    </ul>
   </body>
 </html>

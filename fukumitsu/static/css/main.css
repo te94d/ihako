@@ -261,3 +261,24 @@ button {
   color: #6c757d;
   font-size: 15px;
 }
+
+input.btn--orange {
+  border:none;
+  color: #fff;
+  background-color: #ffbb00;
+}
+
+input.btn--orange:hover {
+  color: #fff;
+  background: #cc9600;
+}
+
+input.btn-c {
+  font-size: 2rem;
+  position: relative;
+  padding: 1.5rem 3rem 1.5rem 2rem;
+}
+
+input.btn-c i.fa {
+  margin-right: 1rem;
+}
