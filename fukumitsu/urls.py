@@ -3,8 +3,9 @@ from . import views
 
 urlpatterns = [
     #ユーザ利用画面用
-    # path('', views.fukumitsu), #トップページ表示
+    path('', views.fukumitsu), #トップページ表示
     path('login/', views.login), #ログインページ（ユーザによる分岐あり）
+    path('login_sep/', views.login_sep), #ログイン分岐
     path('logout/', views.logout), #ログアウト
     
     # path('reserve/', views.reserve), #宿泊予約検索
@@ -17,13 +18,14 @@ urlpatterns = [
     # path('reservedelete/', views.reservedelete), #予約削除機能
     # path('sightseeing/', views.sightseeing), #観光情報ページの表示
     # path('faq/', views.faq), #FAQの表示
-    # path('contact_us', views.contact_us), #お問い合わせの送信機能
+    path('contact_us', views.contact_us), #お問い合わせの送信機能
     
     # #管理者画面用
-    # path('info_add/', views.info_add), #お知らせの追加機能
-    # path('info_del/', views.info_del), #お知らせの削除機能
-    # path('sight_add', views.sight_add), #観光情報の追加機能
-    # path('sight_del/', views.sight_del), #観光情報の削除機能
+    path('admin_forms/', views.admin_forms), #管理者画面の表示
+    path('info_add/', views.info_add), #お知らせの追加機能
+    path('info_del/<int:information_id>', views.info_del), #お知らせの削除機能
+    path('sight_add/', views.sight_add), #観光情報の追加機能
+    path('sight_del/<int:sightseeing_id>', views.sight_del), #観光情報の削除機能
     # path('contact_check', views.contact_check), #お問い合わせの確認機能
     
 ]
