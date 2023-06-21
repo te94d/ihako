@@ -14,6 +14,9 @@ def fukumitsu(request):
     if 'email' not in request.session:
         context_data = {'info_list': info_list, 'contact_form':contact_form, 'context_data':1}
         return render(request, 'fukumitsu.html', context= context_data)
+    else:
+        context_data = {'info_list': info_list, 'contact_form':contact_form, 'context_data':0}
+        return render(request, 'fukumitsu.html', context= context_data)
 
 #ログインページの表示
 def login(request):
@@ -59,12 +62,14 @@ def admin_forms(request):
     context_data = 1
     info_list = models.Information.objects.all()
     sight_list = models.Sightseeing.objects.all()
+    contact_list = models.Contact_us.objects.all()
     admin_forms = {
             'information_form':information_form,
             'sightseeing_form':sightseeing_form,
             'session':context_data,
             'info_list':info_list,
             'sight_list':sight_list,
+            'contact_list':contact_list,
             }
     return render(request, 'admin.html', context = admin_forms)
 
@@ -126,8 +131,19 @@ def register_check(request):
         )
         context = {'member': member}
         return render(request, 'registercheck.html', context)
-    #return hukumitsu(request)
+    return fukumitsu(request)
 
 #お問い合わせフォーム
 def contact_us(request):
-    pass
+    contact_form = forms.contact_form(request.POST)
+    if contact_form.is_valid():
+        name = contact_form.cleaned_data['name']
+        email = contact_form.cleaned_data['email']
+        contents = contact_form.cleaned_data['contents']
+        models.Contact_us.objects.create(name = name, email = email, contents = contents)
+    return fukumitsu(request)
+
+#お問い合わせの削除機能
+def contact_del(request, contact_id):
+    models.Contact_us.objects.filter(contact_id = contact_id).delete()
+    return admin_forms(request)

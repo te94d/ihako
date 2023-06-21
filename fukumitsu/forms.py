@@ -50,11 +50,11 @@ class contact_form(forms.Form):
 
 #お知らせの追加フォーム
 class information_form(forms.Form):
-    category = forms.CharField(label='', widget= forms.TextInput(attrs={'placeholder':'お知らせタイトル'}), required=True)
+    category = forms.CharField(label='', widget= forms.TextInput(attrs={'placeholder':'カテゴリー'}), required=True)
     contents = forms.CharField(label='', widget= forms.TextInput(attrs={'placeholder':'お知らせ内容'}), required=True)
 
 #観光情報追加フォーム
 class sightseeing_form(forms.Form):
     name = forms.CharField(label='', widget= forms.TextInput(attrs={'placeholder':'観光地名称'}), required=True)
-    contents = forms.CharField(label='', widget= forms.TextInput(attrs={'placeholder':'紹介文'}), required=True)
     filename = forms.CharField(label='', widget= forms.TextInput(attrs={'placeholder':'ファイルネーム'}), required=True)
+    contents = forms.CharField(label='',required=True,max_length=1024,widget=forms.Textarea(attrs={'placeholder': '観光地情報を1,024文字以内で入力してください。',}))

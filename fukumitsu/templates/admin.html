@@ -24,7 +24,7 @@
     <link href="/static/css/footer.css" rel="stylesheet" />
 </head>
 
-<body id="page-top">
+<body id="page-top" class="admin">
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-shrink" id="mainNav">
         <div class="container">
@@ -46,38 +46,123 @@
             </div>
         </div>
     </nav>
-    <section>
+    <section class="container">
+        <h2 class="title"><strong>お</strong>知らせ登録</h2>
         <form action="/fukumitsu/info_add/" method="post">
             {% csrf_token %}
             {{information_form}}
             <input type="submit" value="追加">
         </form>
 
-        <h2>お知らせ一覧</h2>
-        {% for info in info_list %}
-        {{info.category}}
-        {{info.contents}}
-        <a href="/fukumitsu/info_del/{{info.information_id}}">
-            <input type="submit" value="削除">
-        </a>
-        {% endfor %}
-
+        <h2 class="title"><strong>お</strong>知らせ一覧</h2>
+        <ul class="blog-list">
+            <li class="blog-item activity bg-gray">
+                <div class="form-contents admin-blog">
+                    <time>投稿時間</time>
+                    <span class="category orange">カテゴリー</span>
+                    <p>お知らせ内容</p>
+                </div>
+            </li>
+            {% for info in info_list %}
+            <li class="blog-item activity">
+                <div class="form-contents admin-blog">
+                    <time>{{info.time}}</time>
+                    <span class="category orange">{{info.category}}</span>
+                    <p>{{info.contents}}</p>
+                    <a href="/fukumitsu/info_del/{{info.information_id}}" class="ma-rig">
+                        <input type="submit" value="削除">
+                    </a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+    <section class="container">
+        <h2 class="title"><strong>観</strong>光地登録</h2>
         <form action="/fukumitsu/sight_add/" method="post">
             {% csrf_token %}
             {{sightseeing_form}}
             <input type="submit" value="追加">
         </form>
 
-        <h2>観光地一覧</h2>
-        {% for sight in sight_list %}
-        {{sight.name}}
-        {{sight.contents}}
-        {{sight.filename}}
-        <a href="/fukumitsu/sight_del/{{sight.sightseeing_id}}">
-            <input type="submit" value="削除">
-        </a>
-        {% endfor %}
+        <h2 class="title"><strong>観</strong>光地一覧</h2>
+        <ul class="blog-list">
+            <li class="blog-item activity bg-gray">
+                <div class="form-contents admin-blog">
+                    <p class="sight-name">観光地名称</p>
+                    <p class="sight-contents">紹介文</p>
+                    <p class="sight-filename">ファイル名</p>
+                </div>
+            </li>
+            {% for sight in sight_list %}
+            <li class="blog-item activity">
+                <div class="form-contents admin-blog">
+                    <p class="sight-name">{{sight.name}}</p>
+                    <p class="sight-contents">{{sight.contents}}</p>
+                    <p class="sight-filename">{{sight.filename}}</p>
+                    <a href="/fukumitsu/sight_del/{{sight.sightseeing_id}}" class="ma-rig">
+                        <input type="submit" value="削除">
+                    </a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
     </section>
+    <section class="container">
+        <h2 class="title"><strong>お</strong>問い合わせ一覧</h2>
+        <ul class="blog-list">
+            <li class="blog-item activity bg-gray">
+                <div class="form-contents admin-blog">
+                    <p class="cu-name">問い合わせ氏名</p>
+                    <p class="cu-email">メールアドレス</p>
+                    <p class="cu-contents">問い合わせ内容</p>
+                </div>
+            </li>
+            {% for contact in contact_list %}
+            <li class="blog-item activity">
+                <div class="form-contents admin-blog">
+                    <p class="cu-name">{{contact.name}}</p>
+                    <p class="cu-email">{{contact.email}}</p>
+                    <p class="cu-contents">{{contact.contents}}</p>
+                    <a href="/fukumitsu/contact_del/{{contact.contact_id}}" class="ma-rig">
+                        <input type="submit" value="削除">
+                    </a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <footer id="footer">
+        <div class="footerWrapper">
+          <div class="footerContainer">
+            <a href="" class="footerTitle">
+              <img src="/static/img/fukumitsu_footerlogo.png" alt="">       
+            </a>
+            <ul class="footerMenu">
+                {% if session == 1 %}
+                <li class="MenuItem"><a href="/reserve/">宿泊予約</a></li>
+                <li class="MenuItem"><a href="/sightseeing/">観光地情報</a></li>
+                <li class="MenuItem"><a href="/memberinfo/">会員情報</a></li>
+                <li class="MenuItem"><a href="/logout/">ログアウト</a></li>
+                {% else %}
+                <li class="MenuItem"><a href="/reserve/">宿泊予約</a></li>
+                <li class="MenuItem"><a href="/sightseeing/">観光地情報</a></li>
+                <li class="MenuItem"><a href="/login/">ログイン</a></li>
+                <li class="MenuItem"><a href="/register/">会員登録</a></li>
+                {% endif %}
+            </ul>
+          </div>
+          <div class="align-items">
+            <div class="snsbtn">
+              <a class="snsitem" href="" target="_blank" aria-label="Twitter"><i class="fab fa-twitter fa-2x"></i></a>
+              <a class="snsitem" href="" target="_blank" aria-label="instagram Profile"><i class="fa-brands fa-instagram fa-2x" data-fa-transform="grow-4"></i></a>
+              <a class="snsitem" href="" aria-label="email"><i class="fa-solid fa-envelope fa-2x"></i></a>
+            </div>
+            <p class="copyright">Copyright &copy; Fukumitsu 2023</p>
+          </div>
+        </div>
+      </footer>
 </body>
 
 </html>

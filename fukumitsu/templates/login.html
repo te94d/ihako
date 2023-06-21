@@ -45,8 +45,9 @@
         </nav>
 
         <!-- login-->
-        <section class="page-section">
-            <div class="login">
+        <section class="page-section login">
+            <div class="container">
+                <img src="/static/img/fukumitsu_footerlogo.png" alt="">
                 <form action="/fukumitsu/login_sep/" id="login_form" method = 'post'>
                     {% csrf_token %}
                     {{login_form}}
