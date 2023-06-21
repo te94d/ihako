@@ -15,20 +15,30 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS-->
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
-        <link href="css/main.css" rel="stylesheet" />
-        <link href="css/header.css" rel="stylesheet" />
+        <link href="/static/css/main.css" rel="stylesheet" />
+        <link href="/static/css/fukumitsu.css" rel="stylesheet" />
+        <link href="/static/css/slider.css" rel="stylesheet" />
+        <link href="/static/css/header.css" rel="stylesheet" />
+        <link href="/static/css/footer.css" rel="stylesheet" />
     </head>
-    <body id="page-top">
+    <body class="bg-gray" id="page-top">
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-shrink" id="mainNav">
             <div class="container">
-                <a class="navbar-brand" href="#"><img src="assets/img/7korobi.png" alt="..." /></a>
+                <a class="navbar-brand" href="/fukumitsu/"><img src="/static/img/fukumitsu_logo.png" alt="..." /></a>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#reserve">Reserve</a></li>                                             
-                        <li class="nav-item"><a class="nav-link" href="#sightseeing">Sightseeing</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#sign-in">Sign in</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#sign-up">Sign up</a></li>
+                        {% if session == 1 %}
+                            <li class="nav-item"><a class="nav-link" href="/reserve/">宿泊予約</a></li>                                             
+                            <li class="nav-item"><a class="nav-link" href="/sightseeing/">観光地情報</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/memberinfo/">会員情報</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/logout/">ログアウト</a></li>
+                        {% else %}
+                            <li class="nav-item"><a class="nav-link" href="/reserve/">宿泊予約</a></li>                                             
+                            <li class="nav-item"><a class="nav-link" href="/sightseeing/">観光地情報</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/login/">ログイン</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/register/">会員登録</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -36,10 +46,14 @@
 
         <!-- login-->
         <section class="page-section">
-            <form action="/todo_app/dashboard/" id="login_form">
-                {{login_form}}
-                <input type="submit" value="login">
-            </form>
+            <div class="login">
+                <form action="/fukumitsu/login_sep/" id="login_form" method = 'post'>
+                    {% csrf_token %}
+                    {{login_form}}
+                    <input type="submit" value="login">
+                </form>
+            </div>
+            
         </section>
         
     </body>

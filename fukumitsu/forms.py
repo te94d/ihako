@@ -35,13 +35,13 @@ class family_form(forms.Form):
     birth5 = forms.DateField(widget= forms.DateInput(), required=False)
 
 #予約検索フォーム
-class reservedate_form():
+class reservedate_form(forms.Form):
     check_in = forms.DateField(widget= forms.DateInput(), required=True)
     check_out = forms.DateField(widget= forms.DateInput(), required=True)
     stay_people = forms.IntegerField(widget= forms.NumberInput(), required=True)
 
 #お問い合わせフォーム
-class contact_form():
+class contact_form(forms.Form):
     name = forms.CharField(widget= forms.TextInput(), required=True)
     email = forms.EmailField(widget= forms.EmailInput(), required=True)
     contents = forms.CharField(widget= forms.TextInput(), required=True)
@@ -49,12 +49,12 @@ class contact_form():
 #管理者画面用フォーム
 
 #お知らせの追加フォーム
-class information_form():
+class information_form(forms.Form):
     category = forms.CharField(widget= forms.TextInput(), required=True)
     contents = forms.CharField(widget= forms.TextInput(), required=True)
 
 #観光情報追加フォーム
-class sightseeing_form():
+class sightseeing_form(forms.Form):
     name = forms.CharField(widget= forms.TextInput(), required=True)
     contents = forms.CharField(widget= forms.TextInput(), required=True)
     filename = forms.CharField(widget= forms.TextInput(), required=True)

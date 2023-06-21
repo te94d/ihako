@@ -1,9 +1,15 @@
-<!DOCTYPE html>
-<html lang="ja">
-  <head>
-
-  </head>
-  <body>
-    
-  </body>
-</html>
+<head>
+    <title>管理者フォーム</title>
+</head>
+<body>
+    <form action="/fukumitsu/info_add/" method="post">
+        {% csrf_token %}
+        {{information_form}}
+        <input type = "submit" value = "追加">
+    </form>
+    <form action="/fukumitsu/sight_add/" method="post">
+        {% csrf_token %}
+        {{sightseeing_form}}
+        <input type = "submit" value = "追加">
+    </form>
+</body>
