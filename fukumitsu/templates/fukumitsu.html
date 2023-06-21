@@ -65,15 +65,15 @@
                     <p class="text-font">お知らせ</p>
                 </div>
                 <ul class="blog-list">
-                    {{ for }}
+                    {% for info in info_list %}
                     <li class="blog-item activity">
                         <a href="#!">
-                            <time>{{ 時間の変数 }}</time>
-                            <span class="category orange">{{ カテゴリ }}</span>
-                            <p>{{おしらせ内容の変数}}</p>
+                            <time>{{ info.time }}</time>
+                            <span class="category orange">{{ info.category }}</span>
+                            <p>{{ info.contents }}</p>
                         </a>
                     </li>
-                    {{ endfor }}
+                    {% endfor %}
                 </ul>
             </div>
         </section>
@@ -91,8 +91,18 @@
         </section>
 
         <!-- contact us -->
-        <section class="">
-            
+        <section class="page-section contact_us">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase main-font">Contact Us</h2>
+                <p class="text-font">お問い合わせ</p>
+            </div>
+            <div class="container">
+                <form action="/fukumitsu/contact_us/" id="login_form" method = 'post'>
+                    {% csrf_token %}
+                    {{ contact_form }}
+                    <input type="submit" value="送信">
+                </form>
+            </div>
         </section>
 
         <footer id="footer">
@@ -102,10 +112,17 @@
                   <img src="/static/img/fukumitsu_footerlogo.png" alt="">       
                 </a>
                 <ul class="footerMenu">
-                  <li class="MenuItem"><a href="">宿泊予約</a></li>
-                  <li class="MenuItem"><a href="">観光地情報</a></li>
-                  <li class="MenuItem"><a href="">ログイン</a></li>
-                  <li class="MenuItem"><a href="">会員登録</a></li>
+                    {% if session == 1 %}
+                    <li class="MenuItem"><a href="/reserve/">宿泊予約</a></li>
+                    <li class="MenuItem"><a href="/sightseeing/">観光地情報</a></li>
+                    <li class="MenuItem"><a href="/memberinfo/">会員情報</a></li>
+                    <li class="MenuItem"><a href="/logout/">ログアウト</a></li>
+                    {% else %}
+                    <li class="MenuItem"><a href="/reserve/">宿泊予約</a></li>
+                    <li class="MenuItem"><a href="/sightseeing/">観光地情報</a></li>
+                    <li class="MenuItem"><a href="/login/">ログイン</a></li>
+                    <li class="MenuItem"><a href="/register/">会員登録</a></li>
+                    {% endif %}
                 </ul>
               </div>
               <div class="align-items">
