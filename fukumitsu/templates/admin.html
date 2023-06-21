@@ -47,14 +47,14 @@
         </div>
     </nav>
     <section class="container">
-        <h2 class="title"><strong>お</strong>知らせ登録</h2>
+        <h2 class="title">お知らせ登録</h2>
         <form action="/fukumitsu/info_add/" method="post">
             {% csrf_token %}
             {{information_form}}
             <input type="submit" value="追加">
         </form>
 
-        <h2 class="title"><strong>お</strong>知らせ一覧</h2>
+        <h2 class="title">お知らせ一覧</h2>
         <ul class="blog-list">
             <li class="blog-item activity bg-gray">
                 <div class="form-contents admin-blog">
@@ -78,14 +78,14 @@
         </ul>
     </section>
     <section class="container">
-        <h2 class="title"><strong>観</strong>光地登録</h2>
+        <h2 class="title">観光地登録</h2>
         <form action="/fukumitsu/sight_add/" method="post">
             {% csrf_token %}
             {{sightseeing_form}}
             <input type="submit" value="追加">
         </form>
 
-        <h2 class="title"><strong>観</strong>光地一覧</h2>
+        <h2 class="title">観光地一覧</h2>
         <ul class="blog-list">
             <li class="blog-item activity bg-gray">
                 <div class="form-contents admin-blog">
@@ -109,7 +109,7 @@
         </ul>
     </section>
     <section class="container">
-        <h2 class="title"><strong>お</strong>問い合わせ一覧</h2>
+        <h2 class="title">お問い合わせ一覧</h2>
         <ul class="blog-list">
             <li class="blog-item activity bg-gray">
                 <div class="form-contents admin-blog">
