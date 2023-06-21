@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-
+    <title>観光地紹介</title>
   </head>
   <body>
-    
+    {% for sight in sight_list %}
+    {{sight.name}}
+    {{sight.contents}}
+    {{sight.filename}}
+    {% endfor %}
   </body>
 </html>

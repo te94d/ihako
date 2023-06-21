@@ -1,9 +1,26 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>会員登録｜福満</title>
   </head>
   <body>
-    
+    <h3>新規会員登録</h3>
+    <form action="/registercheck/" method="POST">
+      {%csrf_token%}
+      <p>「 * 」がついている物は必須項目です。</p>
+      <ul>
+        <li>氏名：{{register_form.name}}*</li>
+        <li>メールアドレス：{{register_form.email}}*</li>
+        <li>パスワード：{{register_form.password}}*</li>
+        <li>生年月日：{{register_form.birth}}*</li>
+        <li>住所：{{register_form.address}}</li>
+        <li>電話番号：{{register_form.phone_num}}</li>
+      </ul>
+      <input type="submit" value="登録">
+    </form>
   </body>
 </html>

@@ -1,9 +1,24 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>会員登録確認｜福満</title>
   </head>
   <body>
-    
+    <p>入力内容確認</p>
+    <ul>
+      <li>氏名：{{name}}</li>
+      <li>メールアドレス：{{email}}</li>
+      <li>パスワード：{{password}}</li>
+      <li>生年月日：{{birth}}</li>
+      <li>住所：{{address}}</li>
+      <li>電話番号：{{phone_num}}</li>
+    </ul>
+    <p>登録しますか？</p>
+    <a href="/register_member/">登録</a>
+    <a href="/register/">戻る</a>
   </body>
 </html>

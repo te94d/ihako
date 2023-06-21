@@ -12,7 +12,7 @@ class member_form(forms.Form):
     name = forms.CharField(label='', widget= forms.TextInput(attrs={'placeholder':'氏名'}), required=True)
     email = forms.EmailField(label='', widget= forms.EmailInput(attrs={'placeholder':'メールアドレス'}), required=True)
     password = forms.CharField(label='', widget= forms.PasswordInput(attrs={'placeholder':'パスワード'}), required=True)
-    birth = forms.DateField(label='', widget= forms.DateInput(attrs={'placeholder':'誕生日'}), required=False)
+    birth = forms.DateField(label='', widget= forms.DateInput(attrs={'placeholder':'誕生日'}), required=True)
     address = forms.CharField(label='', widget= forms.TextInput(attrs={'placeholder':'住所'}), required=False)
     phone_num = forms.IntegerField(label='', widget= forms.NumberInput(attrs={'placeholder':'電話番号'}), required=False)
 
@@ -50,11 +50,12 @@ class contact_form(forms.Form):
 
 #お知らせの追加フォーム
 class information_form(forms.Form):
-    category = forms.CharField(label='', widget= forms.TextInput(attrs={'placeholder':'お知らせタイトル'}), required=True)
+    list = (('お知らせ', 'お知らせ'), ('イベント', 'イベント'), ('緊急', '緊急'))
+    category = forms.ChoiceField(label='', required=True, choices=list)
     contents = forms.CharField(label='', widget= forms.TextInput(attrs={'placeholder':'お知らせ内容'}), required=True)
 
 #観光情報追加フォーム
 class sightseeing_form(forms.Form):
     name = forms.CharField(label='', widget= forms.TextInput(attrs={'placeholder':'観光地名称'}), required=True)
-    contents = forms.CharField(label='', widget= forms.TextInput(attrs={'placeholder':'紹介文'}), required=True)
-    filename = forms.CharField(label='', widget= forms.TextInput(attrs={'placeholder':'ファイルネーム'}), required=True)
+    filename = forms.CharField(label='', widget= forms.TextInput(attrs={'placeholder':'ファイル名'}), required=True)
+    contents = forms.CharField(label='',required=True,max_length=1024,widget=forms.Textarea(attrs={'placeholder': '観光地情報を1,024文字以内で入力してください。',}))

@@ -1,9 +1,24 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>予約削除確認｜福満</title>
   </head>
   <body>
+    <h3>予約情報</h3>
+    <ul>
+         <li>チェックイン：{{delete_reserve.check_in}}</li>
+         <li>チェックアウト：{{delete_reserve.chack_out}}</li>
+         <li>宿泊人数：{{delete_reserve.stay_people}}</li>
+         <li>部屋の名前：{{delete_reserve.room.name}}</li>
+         <li>値段：{{delete_reserve.room.price}}</li>
+         <a href="/reservedelete/{{delete_reserve.reserve_id}}">取消確定</a>
+         <a href="/memberinfo/">戻る</a>
+    </ul>
+  </body>
     
   </body>
 </html>
