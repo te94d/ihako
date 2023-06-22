@@ -95,7 +95,7 @@ form input, form input, textarea {
   width: 100%;
 }
 
-.admin form input, form input, textarea, .admin select {
+.admin form input, form input, textarea, select {
   margin: 15px auto;
   padding: 8px;
   font-size: 20px;
@@ -115,7 +115,7 @@ form input, form input, textarea {
   font-size: 35px;
 }
 
-/* .member-contents {
+.member-contents {
   margin: 50px auto;
   font-size: 20px;
   width: 80%;
@@ -138,4 +138,22 @@ form input, form input, textarea {
 
 .member-contents .member-items td {
   width: 60%;
-} */
+} 
+
+.regi-contents .regi-items input{
+  margin-top: 0px;
+}
+.regi-contents .regi-items p {
+  text-align: left;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+.regi-contents strong {
+  color: red;
+}
+
+.search p label{
+  text-align: left;
+  font-size: 20px;
+  margin-bottom: 5px;
+}

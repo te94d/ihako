@@ -8,10 +8,10 @@ urlpatterns = [
     path('login_sep/', views.login_sep), #ログイン分岐
     path('logout/', views.logout), #ログアウト
     
-    # path('reserve/', views.reserve), #宿泊予約検索
-    # path('room/', views.room), #予約できる部屋の一覧表示
-    # path('reservecheck/', views.reservecheck), #予約確認画面の表示（ログイン有無の分岐あり）
-    # path('reservefin/', views.reservefin), #予約完了画面の表示
+    path('reserve/', views.reserve), #宿泊予約検索
+    path('room/', views.room), #予約できる部屋の一覧表示
+    path('reservecheck/<int:room_id>', views.reservecheck), #予約確認画面の表示（ログイン有無の分岐あり）
+    path('reservefin/', views.reservefin), #予約完了画面の表示
     path('register/', views.register), #会員登録画面の表示
     path('registercheck/', views.register_check), #会員登録確認画面の表示
     path('memberinfo/', views.memberinfo), #ユーザ情報の表示

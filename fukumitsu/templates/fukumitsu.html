@@ -7,7 +7,7 @@
         <meta name="author" content="" />
         <title>福満</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -30,15 +30,15 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                         {% if session == 1 %}
-                            <li class="nav-item"><a class="nav-link" href="/reserve/">宿泊予約</a></li>                                             
-                            <li class="nav-item"><a class="nav-link" href="/sightseeing/">観光地情報</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/memberinfo/">会員情報</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/logout/">ログアウト</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/fukumitsu/reserve/">宿泊予約</a></li>                                             
+                            <li class="nav-item"><a class="nav-link" href="/fukumitsu/sightseeing/">観光地情報</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/fukumitsu/memberinfo/">会員情報</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/fukumitsu/logout/">ログアウト</a></li>
                         {% else %}
-                            <li class="nav-item"><a class="nav-link" href="/reserve/">宿泊予約</a></li>                                             
-                            <li class="nav-item"><a class="nav-link" href="/sightseeing/">観光地情報</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/login/">ログイン</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/register/">会員登録</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/fukumitsu/reserve/">宿泊予約</a></li>                                             
+                            <li class="nav-item"><a class="nav-link" href="/fukumitsu/sightseeing/">観光地情報</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/fukumitsu/login/">ログイン</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/fukumitsu/register/">会員登録</a></li>
                         {% endif %}
                     </ul>
                 </div>
@@ -54,7 +54,7 @@
 
         <section class="page-section container">
             <p class="catchcopy"><strong>福</strong>島で<strong>満</strong>たされませんか</p>
-            <a href="reserve/" class="btn btn-flat"><span>宿泊予約</span></a>
+            <a href="/fukumitsu/reserve/" class="btn btn-flat"><span>宿泊予約</span></a>
         </section>
 
         <!-- info -->
@@ -102,6 +102,7 @@
                     {{ contact_form }}
                     <input type="submit" value="お問い合わせ" class="btn btn--orange btn-c">
                 </form>
+                <a href="/fukumitsu/faq/" >FAQはこちら</a>
             </div>
         </section>
 
@@ -113,15 +114,15 @@
                 </a>
                 <ul class="footerMenu">
                     {% if session == 1 %}
-                    <li class="MenuItem"><a href="/reserve/">宿泊予約</a></li>
-                    <li class="MenuItem"><a href="/sightseeing/">観光地情報</a></li>
-                    <li class="MenuItem"><a href="/memberinfo/">会員情報</a></li>
-                    <li class="MenuItem"><a href="/logout/">ログアウト</a></li>
+                    <li class="MenuItem"><a href="/fukumitsu/reserve/">宿泊予約</a></li>
+                    <li class="MenuItem"><a href="/fukumitsu/sightseeing/">観光地情報</a></li>
+                    <li class="MenuItem"><a href="/fukumitsu/memberinfo/">会員情報</a></li>
+                    <li class="MenuItem"><a href="/fukumitsu/logout/">ログアウト</a></li>
                     {% else %}
-                    <li class="MenuItem"><a href="/reserve/">宿泊予約</a></li>
-                    <li class="MenuItem"><a href="/sightseeing/">観光地情報</a></li>
-                    <li class="MenuItem"><a href="/login/">ログイン</a></li>
-                    <li class="MenuItem"><a href="/register/">会員登録</a></li>
+                    <li class="MenuItem"><a href="/fukumitsu/reserve/">宿泊予約</a></li>
+                    <li class="MenuItem"><a href="/fukumitsu/sightseeing/">観光地情報</a></li>
+                    <li class="MenuItem"><a href="/fukumitsu/login/">ログイン</a></li>
+                    <li class="MenuItem"><a href="/fukumitsu/register/">会員登録</a></li>
                     {% endif %}
                 </ul>
               </div>

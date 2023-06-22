@@ -7,7 +7,7 @@
         <meta name="author" content="" />
         <title>ログイン｜福満</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -29,15 +29,15 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                         {% if session == 1 %}
-                            <li class="nav-item"><a class="nav-link" href="/reserve/">宿泊予約</a></li>                                             
-                            <li class="nav-item"><a class="nav-link" href="/sightseeing/">観光地情報</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/memberinfo/">会員情報</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/logout/">ログアウト</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/fukumitsu/reserve/">宿泊予約</a></li>                                             
+                            <li class="nav-item"><a class="nav-link" href="/fukumitsu/sightseeing/">観光地情報</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/fukumitsu/memberinfo/">会員情報</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/fukumitsu/logout/">ログアウト</a></li>
                         {% else %}
-                            <li class="nav-item"><a class="nav-link" href="/reserve/">宿泊予約</a></li>                                             
-                            <li class="nav-item"><a class="nav-link" href="/sightseeing/">観光地情報</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/login/">ログイン</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/register/">会員登録</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/fukumitsu/reserve/">宿泊予約</a></li>                                             
+                            <li class="nav-item"><a class="nav-link" href="/fukumitsu/sightseeing/">観光地情報</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/fukumitsu/login/">ログイン</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/fukumitsu/register/">会員登録</a></li>
                         {% endif %}
                     </ul>
                 </div>
@@ -54,8 +54,39 @@
                     <input type="submit" value="login">
                 </form>
             </div>
-            
         </section>
         
+        <footer id="footer">
+            <div class="footerWrapper">
+              <div class="footerContainer">
+                <a href="" class="footerTitle">
+                  <img src="/static/img/fukumitsu_footerlogo.png" alt="">
+                </a>
+                <ul class="footerMenu">
+                  {% if session == 1 %}
+                  <li class="MenuItem"><a href="/fukumitsu/reserve/">宿泊予約</a></li>
+                  <li class="MenuItem"><a href="/fukumitsu/sightseeing/">観光地情報</a></li>
+                  <li class="MenuItem"><a href="/fukumitsu/memberinfo/">会員情報</a></li>
+                  <li class="MenuItem"><a href="/fukumitsu/logout/">ログアウト</a></li>
+                  {% else %}
+                  <li class="MenuItem"><a href="/fukumitsu/reserve/">宿泊予約</a></li>
+                  <li class="MenuItem"><a href="/fukumitsu/sightseeing/">観光地情報</a></li>
+                  <li class="MenuItem"><a href="/fukumitsu/login/">ログイン</a></li>
+                  <li class="MenuItem"><a href="/fukumitsu/register/">会員登録</a></li>
+                  {% endif %}
+                </ul>
+              </div>
+              <div class="align-items">
+                <div class="snsbtn">
+                  <a class="snsitem" href="" target="_blank" aria-label="Twitter"><i class="fab fa-twitter fa-3x"></i></a>
+                  <a class="snsitem" href="" target="_blank" aria-label="instagram Profile"><i
+                      class="fa-brands fa-instagram fa-3x" data-fa-transform="grow-4"></i></a>
+                  <a class="snsitem" href="" aria-label="email"><i class="fa-solid fa-envelope fa-3x"></i></a>
+                </div>
+                <p class="copyright">Copyright &copy; Fukumitsu 2023</p>
+              </div>
+            </div>
+        </footer>
+
     </body>
 </html>
