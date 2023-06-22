@@ -47,17 +47,37 @@
     </div>
   </nav>
 
-  <section>
-    <h3>予約情報</h3>
-    <ul>
-      <li>チェックイン：{{delete_reserve.check_in}}</li>
-      <li>チェックアウト：{{delete_reserve.chack_out}}</li>
-      <li>宿泊人数：{{delete_reserve.stay_people}}</li>
-      <li>部屋の名前：{{delete_reserve.room.name}}</li>
-      <li>値段：{{delete_reserve.room.price}}</li>
-      <a href="/reservedelete/{{delete_reserve.reserve_id}}">取消確定</a>
-      <a href="/memberinfo/">戻る</a>
-    </ul>
+  <section class="page-section">
+    <div class="container">
+      <div class="text-center">
+        <h2 class="section-heading text-uppercase main-font">Reserve Info</h2>
+        <p class="text-font">予約情報</p>
+      </div>
+      <table class="member-contents">
+        <tr class="member-items">
+          <th>チェックイン</th>
+          <td>{{delete_reserve.check_in}}</td>
+        </tr>
+        <tr class="member-items">
+          <th>チェックアウト</th>
+          <td>{{delete_reserve.chack_out}}</td>
+        </tr>
+        <tr class="member-items">
+          <th>宿泊人数</th>
+          <td>{{delete_reserve.stay_people}}</td>
+        </tr>
+        <tr class="member-items">
+          <th>部屋の名前</th>
+          <td>{{delete_reserve.room.name}}</td>
+        </tr>
+        <tr class="member-items">
+          <th>値段</th>
+          <td>{{delete_reserve.room.price}}</td>
+        </tr>
+      </table>
+      <a href="/reservedelete/{{delete_reserve.reserve_id}}" class="ookii">取消確定</a>
+      <a href="/memberinfo/" class="ookii">戻る</a>
+    </div>
   </section>
 
   <footer id="footer">
