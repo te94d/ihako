@@ -8,7 +8,7 @@
   <meta name="author" content="" />
   <title>会員情報｜福満</title>
   <!-- Favicon-->
-  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
   <!-- Font Awesome icons (free version)-->
   <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
   <!-- Google fonts-->
@@ -83,10 +83,12 @@
         <h2 class="section-heading text-uppercase main-font">Reservation Info</h2>
         <p class="text-font">予約情報</p>
       </div>
-      <h4>最近の予約</h4>
-      {% if not future_reserve %}
-      <p>今後の予約はありません</p>
-      {% endif %}
+      <div class="meminfo">
+        <h4>最近の予約</h4>
+        {% if not future_reserve %}
+        <p>今後の予約はありません</p>
+        {% endif %}
+      </div>
       <table class="member-contents">
         {%for reserve in future_reserve %}
           <tr class="member-items">
@@ -106,8 +108,8 @@
             <td>{{reserve.room.name}}</td>
           </tr>
           <tr class="member-items">
-            <th>お値段</th>
-            <td>{{reserve.room.price}}</td>
+            <th>一泊のお値段</th>
+            <td>{{reserve.room.price}}円</td>
           </tr>
           <tr class="member-items">
             <th></th>
@@ -120,7 +122,7 @@
     <footer id="footer">
       <div class="footerWrapper">
         <div class="footerContainer">
-          <a href="" class="footerTitle">
+          <a href="/fukumitsu/" class="footerTitle">
             <img src="/static/img/fukumitsu_footerlogo.png" alt="">       
           </a>
           <ul class="footerMenu">

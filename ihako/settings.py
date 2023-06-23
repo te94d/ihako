@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'fukumitsu',
+    'mathfilters',#追加しました！！！！！！
+
 ]
 
 MIDDLEWARE = [

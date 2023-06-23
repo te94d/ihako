@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+  {%load mathfilters%}
 
 <head>
   <meta charset="utf-8" />
@@ -71,7 +72,7 @@
         </tr>
         <tr class="member-items">
           <th>金額</th>
-          <td>{{room.price}}円</td>
+          <td>{{stay_date|mul:room.price}}円</td>
         </tr>
       </table>
       <form action="/fukumitsu/reservefin/" method="POST">
@@ -84,7 +85,7 @@
   <footer id="footer">
     <div class="footerWrapper">
       <div class="footerContainer">
-        <a href="" class="footerTitle">
+        <a href="/fukumitsu/" class="footerTitle">
           <img src="/static/img/fukumitsu_footerlogo.png" alt="">
         </a>
         <ul class="footerMenu">

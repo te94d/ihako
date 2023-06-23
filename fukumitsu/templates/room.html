@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+  {%load mathfilters%}
 
 <head>
   <meta charset="utf-8" />
@@ -82,28 +83,36 @@
       </div>
       {% csrf_token %}
       {% for room in rooms%}
-      <table class="member-contents">  
-        <tr class="member-items">
-          <th>部屋名</th>
-          <td>{{room.name}}</td>
-        </tr>
-        <tr class="member-items">
-          <th>最大人数</th>
-          <td>{{room.people}}</td>
-        </tr>
-        <tr class="member-items">
-          <th>紹介</th>
-          <td>{{room.contents}}</td>
-        </tr>
-        <tr class="member-items">
-          <th>金額</th>
-          <td>{{room.price}}</td>
-        </tr>
-        <tr class="member-items">
-          <th></th>
-          <td><a href="/fukumitsu/reservecheck/{{room.room_id}}">予約</a></td>
-        </tr>
-      </table>
+      <div class="room">
+          <img src = "/static/img/room/{{room.filename}}">
+        <table class="member-contents">  
+          <tr class="member-items">
+            <th>部屋名</th>
+            <td>{{room.name}}</td>
+          </tr>
+          <tr class="member-items">
+            <th>最大人数</th>
+            <td>{{room.people}}人</td>
+          </tr>
+          <tr class="member-items">
+            <th>紹介</th>
+            <td>{{room.contents}}</td>
+          </tr>
+          <tr class="member-items">
+            <th>1泊の金額</th>
+            <td>{{room.price}}円</td>
+          </tr>
+          <tr class="member-items">
+            <th>合計金額</th>
+            <td>{{stay_date|mul:room.price}}円</td>
+          </tr>
+          <tr class="member-items">
+            <th></th>
+            <td><a href="/fukumitsu/reservecheck/{{room.room_id}}">予約</a></td>
+          </tr>
+        </table>
+      </div>
+      
       {% endfor%}
     </div>
   </section>

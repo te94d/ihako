@@ -19,7 +19,7 @@ urlpatterns = [
     path('reservedeletecheck/<int:reserve_id>', views.reservedeletecheck),#追加！！
     path('register_member/', views.register_member),#追加！！
     path('sightseeing/', views.sightseeing), #観光情報ページの表示
-    # path('faq/', views.faq), #FAQの表示
+    path('faq/', views.faq), #FAQの表示
     path('contact_us/', views.contact_us), #お問い合わせの送信機能
     
     # #管理者画面用

@@ -47,17 +47,27 @@
     </div>
   </nav>
 
-  <section>
-    {% for sight in sight_list %}
-    {{sight.name}}
-    {{sight.contents}}
-    {{sight.filename}}
-    {% endfor %}
+  <section class="page-section">
+    <div class="container">
+      <div class="text-center">
+        <h2 class="section-heading text-uppercase main-font">Sightseeing</h2>
+        <p class="text-font">観光地紹介</p>
+      </div>
+      {% for sight in sight_list %}
+      <div class="sigh-container">
+        <img src="/static/img/sightseeing/{{sight.filename}}" alt="">
+        <ul class="sigh-box">
+          <li>{{sight.name}}</li>
+          <li>{{sight.contents}}</li>   
+        </ul>
+      </div>
+      {% endfor %}         
+    </div>
   </section>
   <footer id="footer">
     <div class="footerWrapper">
       <div class="footerContainer">
-        <a href="" class="footerTitle">
+        <a href="/fukumitsu/" class="footerTitle">
           <img src="/static/img/fukumitsu_footerlogo.png" alt="">
         </a>
         <ul class="footerMenu">

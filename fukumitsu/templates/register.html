@@ -51,6 +51,7 @@
       <div class="text-center">
         <h2 class="section-heading text-uppercase main-font">Member Registration</h2>
         <p class="text-font">新規会員登録</p>
+        <p class="text-font red">{{regi_error_msg}}</p>       
       </div>
       <form action="/registercheck/" method="POST">
         {%csrf_token%}
@@ -71,7 +72,7 @@
   <footer id="footer">
     <div class="footerWrapper">
       <div class="footerContainer">
-        <a href="" class="footerTitle">
+        <a href="/fukumitsu/" class="footerTitle">
           <img src="/static/img/fukumitsu_footerlogo.png" alt="">       
         </a>
         <ul class="footerMenu">

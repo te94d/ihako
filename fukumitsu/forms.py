@@ -15,7 +15,7 @@ class member_form(forms.Form):
     password = forms.CharField(label='', widget= forms.PasswordInput(attrs={'placeholder':'パスワード'}), required=True)
     birth = forms.DateField(label='', widget= forms.NumberInput(attrs={'type':'date'}), required=True)
     address = forms.CharField(label='', widget= forms.TextInput(attrs={'placeholder':'住所'}), required=False)
-    phone_num = forms.IntegerField(label='', widget= forms.NumberInput(attrs={'placeholder':'電話番号'}), required=False)
+    phone_num = forms.CharField(label='', widget= forms.NumberInput(attrs={'placeholder':'電話番号'}), required=False)
 
 #家族構成登録フォーム
 class family_form(forms.Form):

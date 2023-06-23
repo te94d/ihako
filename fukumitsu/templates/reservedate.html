@@ -50,19 +50,34 @@
     <div class="container">
       <div class="text-center">
         <h2 class="section-heading text-uppercase main-font">Accommodation Search</h2>
-        <p class="text-font">{{msg}}</p>
+        <p class="text-font ">{{msg}}</p>
+        <p class="text-font red">{{error_msg}}</p>
       </div>
       <form action="/fukumitsu/room/" method="POST" class="search">
         {% csrf_token %}
         {{reservedate_form.as_p}}
         <input type="submit" value="検索">
       </form>
+
+      <hr/ style="margin:40px;">
+      <p class="res-text">部屋一覧</p>
+      <div class="reserve">
+        <img src = "/static/img/room/2_matsu.png">
+        <img src = "/static/img/room/2_sugi.png">
+        <img src = "/static/img/room/3_hinoki.png">
+        <img src = "/static/img/room/3_momiji.png">
+        <img src = "/static/img/room/5_ginnan.png">
+        <img src = "/static/img/room/5_sakura.png">
+        <img src = "/static/img/room/6_kaede.png">
+      </div>
+      
+
     </div>
   </section>
   <footer id="footer">
     <div class="footerWrapper">
       <div class="footerContainer">
-        <a href="" class="footerTitle">
+        <a href="/fukumitsu/" class="footerTitle">
           <img src="/static/img/fukumitsu_footerlogo.png" alt="">
         </a>
         <ul class="footerMenu">
