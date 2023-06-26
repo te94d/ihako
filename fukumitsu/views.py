@@ -7,7 +7,11 @@ import datetime
 
 #TOP
 def fukumitsu(request):
-    #お知らせの読み込み
+    admin = models.User.objects.get(user_id = 1)
+    if 'email' in request.session:
+        if request.session['email'] == admin.email:
+            return admin_forms(request)
+    #お知らせの読み込み!
     info_list = models.Information.objects.all().order_by().reverse()[:5]
     #お問い合わせフォーム
     contact_form = forms.contact_form()
@@ -24,8 +28,8 @@ def login(request):
     return render(request, 'login.html', context={'login_form':login_form})
 
 #ログイン分岐
-def login_sep(request):
-    if 'email' not in request.session:
+def login_sep(request): 
+    if 'email' not in request.session: #セッション有無の確認
         login_form = forms.login_form(request.POST)
         if login_form.is_valid():
             try:
@@ -36,6 +40,13 @@ def login_sep(request):
                     return admin_forms(request)
                 elif login_form.cleaned_data['email'] == login_user.email and login_form.cleaned_data['password'] == login_user.password:
                     request.session['email'] = login_form.cleaned_data['email']
+                    context_data = 1
+                    
+                    if 'check_in' in request.session and 'chack_out' in request.session and 'stay_people' in request.session:
+                        room = models.Room.objects.get(room_id=request.session['room_id']) 
+                        context_data = {'check_in': request.session['check_in'], 'chack_out': request.session['chack_out'], 'stay_people': request.session['stay_people'], 'room': room,'stay_date':request.session['stay_date'],'session':1}
+                        return render(request, 'reservecheck.html', context=context_data)
+                    
                     return fukumitsu(request)
                 else:
                     context_data = 0
@@ -124,8 +135,12 @@ def contact_del(request, contact_id):
 
 #会員登録フォーム
 def register(request):
+    if 'regi_error_msg' in request.session:
+        member_form = forms.member_form()
+        context_date = {'register_form': member_form, 'regi_error_msg': request.session['regi_error_msg'],'session':0}
+        return render(request, 'register.html', context = context_date)
     member_form = forms.member_form()
-    context_date = {'register_form': member_form}
+    context_date = {'register_form': member_form, 'session':0}
     return render(request, 'register.html', context = context_date)
 
 #会員登録の最終確認ページ
@@ -133,33 +148,39 @@ def register_check(request):
     member_form = forms.member_form(request.POST)
     if member_form.is_valid():
         request.session['name'] = member_form.cleaned_data['name']
-        request.session['email'] = member_form.cleaned_data['email']
+        request.session['email_address'] = member_form.cleaned_data['email_address']
         request.session['password'] = member_form.cleaned_data['password']
         request.session['birth'] = str(member_form.cleaned_data['birth'])
         request.session['address'] = member_form.cleaned_data['address']
         request.session['phone_num'] =  member_form.cleaned_data['phone_num']
-    context_date={
-        "name":request.session['name'],
-        "email":request.session['email'],
-        "password":request.session['password'],
-        "birth":request.session['birth'],
-        "address":request.session['birth'],
-        "phone_num":request.session['phone_num'],
-    }
-    return render(request,"registercheck.html",context=context_date)
+        if 'regi_error_msg' in request.session:
+            del request.session['regi_error_msg']
+        context_date={
+            'name':request.session['name'],
+            "email_address":request.session['email_address'],
+            "password":request.session['password'],
+            "birth":request.session['birth'],
+            "address":request.session['address'],
+            "phone_num":request.session['phone_num'],
+            "session":0,
+        }
+        return render(request,"registercheck.html",context=context_date)
+    else:
+        request.session['regi_error_msg']="正確な値が入力されていません。"
+        return register(request)
 
 #データベースへの会員登録
 def register_member(request):
         models.User.objects.create(
             name = request.session['name'],
-            email = request.session['email'],
+            email = request.session['email_address'],
             password = request.session['password'],
             birth = request.session['birth'],
             address = request.session['address'],
             phone_num = request.session['phone_num'],
         )
         del request.session['name'],
-        del request.session['email'],
+        del request.session['email_address'],
         del request.session['password'],
         del request.session['birth'],
         del request.session['address'],
@@ -170,17 +191,133 @@ def register_member(request):
 def memberinfo(request):
     login_user_info = models.User.objects.get(email =request.session['email'] )
     future_reserve = models.Reserve.objects.filter(check_in__gte = datetime.date.today(),user_id = login_user_info.user_id)    
-    context_data = {"login_user_info":login_user_info,"future_reserve":future_reserve}
+    context_data = {"login_user_info":login_user_info, "future_reserve":future_reserve, "session":1}
     return render(request, "memberinfo.html",context=context_data)
 
 #予約削除前確認ページ
 def reservedeletecheck(request,reserve_id):
     delete_reserve = models.Reserve.objects.get(reserve_id = reserve_id)
-    context_data = {"delete_reserve": delete_reserve,}
-    return render(request, "reservedelete.HTML",context=context_data)
+    context_data = {"delete_reserve": delete_reserve, "session":1}
+    return render(request, "reservedelete.html",context=context_data)
 
 #観光地ページの表示
 def sightseeing(request):
     sight_list = models.Sightseeing.objects.all()
-    context_data = {'sight_list':sight_list}
-    return render(request, 'sightseeing.html', context=context_data)
+    if 'email' not in request.session:
+        context_data = {'sight_list':sight_list, "session":0}
+        return render(request, 'sightseeing.html', context=context_data)
+    else:
+        context_data = {'sight_list':sight_list, "session":1}
+        return render(request, 'sightseeing.html', context=context_data)
+    
+#宿泊予約検索
+def reserve(request):
+    if 'check_in' in request.session and 'chack_out' in request.session and 'stay_people' in request.session:
+        if request.session['check_in'] > request.session['chack_out']:
+            del request.session['check_in']
+            del request.session['chack_out']
+            del request.session['stay_people']
+            reservedate_form = forms.reservedate_form()
+            msg_syukuhaku = "宿泊検索"
+            msg = "チェックアウトはチェックイン日以降の日付を選択してください"
+            if 'email' not in request.session:
+                context_date = {'reservedate_form' : reservedate_form, 'msg':msg_syukuhaku,'error_msg':msg,'session':0}
+                return render(request, 'reservedate.html', context=context_date) 
+            else:
+                context_date = {'reservedate_form' : reservedate_form, 'msg':msg_syukuhaku,'error_msg':msg,'session':1}
+                return render(request, 'reservedate.html', context=context_date) 
+        del request.session['check_in']
+        del request.session['chack_out']
+        del request.session['stay_people']
+    reservedate_form = forms.reservedate_form()
+    msg = "宿泊検索"
+    if 'email' not in request.session:
+        context_date = {'reservedate_form' : reservedate_form, 'msg':msg, 'session':0}
+        return render(request, 'reservedate.html', context=context_date) 
+    else:
+        context_date = {'reservedate_form' : reservedate_form, 'msg':msg, 'session':1}
+        return render(request, 'reservedate.html', context=context_date) 
+
+#予約できる部屋の一覧表示
+def room(request):
+    if 'check_in' not in request.session and 'chack_out' not in request.session and 'stay_people' not in request.session:
+        reservedate_form = forms.reservedate_form(request.POST)
+        if reservedate_form.is_valid():
+            request.session['check_in']= str(reservedate_form.cleaned_data['check_in'])
+            request.session['chack_out'] = str(reservedate_form.cleaned_data['chack_out'])
+            request.session['stay_people'] = reservedate_form.cleaned_data['stay_people']
+            check_in_datetime = datetime.datetime.strptime(request.session['check_in'], '%Y-%m-%d')
+            check_in_date = check_in_datetime.date()
+            chack_out_datetime = datetime.datetime.strptime(request.session['chack_out'], '%Y-%m-%d')
+            chack_out_date = chack_out_datetime.date()
+            stay_datetime = chack_out_date - check_in_date 
+            stay_date = stay_datetime.days
+            request.session['stay_date']=stay_date
+
+            if 'email' not in request.session:
+                if request.session['check_in'] < request.session['chack_out']:
+                    rooms = models.Room.objects.filter(people__gte = reservedate_form.cleaned_data['stay_people'])
+                    context_date = {'check_in' : request.session['check_in'] , 'chack_out' : request.session['chack_out'], 'stay_people': request.session['stay_people'] , 'rooms' : rooms, 'stay_date':request.session['stay_date'],'session':0}
+                    return render(request, 'room.html', context=context_date)
+                else:
+                    return reserve(request)
+            else:
+                if request.session['check_in'] < request.session['chack_out']:
+                    rooms = models.Room.objects.filter(people__gte = reservedate_form.cleaned_data['stay_people'])
+                    context_date = {'check_in' : request.session['check_in'] , 'chack_out' : request.session['chack_out'], 'stay_people': request.session['stay_people'] , 'rooms' : rooms,'stay_date':request.session['stay_date'],'session':1}
+                    return render(request, 'room.html', context=context_date)
+                else:
+                    return reserve(request)
+    else:
+        check_in_datetime = datetime.datetime.strptime(request.session['check_in'], '%Y-%m-%d')
+        check_in_date = check_in_datetime.date()
+        chack_out_datetime = datetime.datetime.strptime(request.session['chack_out'], '%Y-%m-%d')
+        chack_out_date = chack_out_datetime.date()
+        stay_datetime = chack_out_date - check_in_date 
+        stay_date = stay_datetime.days
+        request.session['stay_date']=stay_date
+        rooms = models.Room.objects.filter(people__gte = request.session["stay_people"])
+        if 'email' not in request.session:
+            context_date = {'check_in' : request.session['check_in'] , 'chack_out' : request.session['chack_out'], 'stay_people': request.session['stay_people'] , 'rooms' : rooms,'stay_date':request.session['stay_date'],'session':0}
+            return render(request, 'room.html', context=context_date),
+        else:
+            context_date = {'check_in' : request.session['check_in'] , 'chack_out' : request.session['chack_out'], 'stay_people': request.session['stay_people'] , 'rooms' : rooms,'stay_date':request.session['stay_date'],'session':1}
+            return render(request, 'room.html', context=context_date)
+
+#予約確認画面の表示（ログイン有無の分岐あり）    
+def reservecheck(request, room_id):
+    request.session['room_id'] = room_id
+    if 'email' not in request.session:
+        return login(request)
+    room = models.Room.objects.get(room_id=request.session['room_id']) 
+    context_data = {'check_in': request.session['check_in'], 'chack_out': request.session['chack_out'], 'stay_people': request.session['stay_people'], 'room': room,'stay_date':request.session['stay_date'], 'session':1}
+    return render(request, 'reservecheck.html', context=context_data)
+
+#予約完了画面の表示
+def reservefin(request):
+    reserve_user_info = models.User.objects.get(email=request.session['email'])
+    # 文字型を日付型にする
+    check_in_str = request.session['check_in']
+    check_in_datetime = datetime.datetime.strptime(check_in_str, '%Y-%m-%d')
+    check_in_date = check_in_datetime.date()
+
+    chack_out_str = request.session['chack_out']
+    chack_out_datetime = datetime.datetime.strptime(chack_out_str, '%Y-%m-%d')
+    chack_out_date = chack_out_datetime.date()
+
+    models.Reserve.objects.create(
+        stay_people=request.session['stay_people'], check_in=check_in_date, chack_out=chack_out_date, room_id=request.session['room_id'], user_id=reserve_user_info.user_id)
+    # セッション情報を破棄
+    del request.session['check_in']
+    del request.session['chack_out']
+    del request.session['stay_people']
+    return render(request,"reservefin.html", context={'session':1})
+
+# FAQ
+def faq(request):
+        if 'email' not in request.session:
+            context_date = {'session':0}
+            return render(request, "faq.html", context=context_date)
+        else:
+            context_date = {'session':1}
+            return render(request, "faq.html", context=context_date)

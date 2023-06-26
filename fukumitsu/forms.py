@@ -1,4 +1,5 @@
 from django import forms
+import datetime
 
 #顧客入力用フォーム
 
@@ -10,11 +11,11 @@ class login_form(forms.Form):
 #会員登録用フォーム
 class member_form(forms.Form):
     name = forms.CharField(label='', widget= forms.TextInput(attrs={'placeholder':'氏名'}), required=True)
-    email = forms.EmailField(label='', widget= forms.EmailInput(attrs={'placeholder':'メールアドレス'}), required=True)
+    email_address = forms.EmailField(label='', widget= forms.EmailInput(attrs={'placeholder':'メールアドレス'}), required=True)
     password = forms.CharField(label='', widget= forms.PasswordInput(attrs={'placeholder':'パスワード'}), required=True)
-    birth = forms.DateField(label='', widget= forms.DateInput(attrs={'placeholder':'誕生日'}), required=True)
+    birth = forms.DateField(label='', widget= forms.NumberInput(attrs={'type':'date'}), required=True)
     address = forms.CharField(label='', widget= forms.TextInput(attrs={'placeholder':'住所'}), required=False)
-    phone_num = forms.IntegerField(label='', widget= forms.NumberInput(attrs={'placeholder':'電話番号'}), required=False)
+    phone_num = forms.CharField(label='', widget= forms.NumberInput(attrs={'placeholder':'電話番号'}), required=False)
 
 #家族構成登録フォーム
 class family_form(forms.Form):
@@ -36,9 +37,12 @@ class family_form(forms.Form):
 
 #予約検索フォーム
 class reservedate_form(forms.Form):
-    check_in = forms.DateField(label='', widget= forms.DateInput(attrs={'placeholder':'チェックイン'}), required=True)
-    check_out = forms.DateField(label='', widget= forms.DateInput(attrs={'placeholder':'チェックアウト'}), required=True)
-    stay_people = forms.IntegerField(label='', widget= forms.NumberInput(attrs={'placeholder':'宿泊人数'}), required=True)
+    check_in = forms.DateField(label= 'チェックイン', widget= forms.NumberInput(attrs={"type": "date",'min':datetime.date.today() }), required=True)
+    chack_out = forms.DateField(label= 'チェックアウト',widget= forms.NumberInput(attrs={"type": "date",'min':datetime.date.today() }), required=True)
+    list = (
+        ('1',1),('2',2),('3',3),('4',4),('5',5),('6',6)
+    )
+    stay_people = forms.ChoiceField(label= '宿泊人数', required=True, choices=list)
 
 #お問い合わせフォーム
 class contact_form(forms.Form):

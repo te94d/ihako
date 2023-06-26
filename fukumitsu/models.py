@@ -7,7 +7,7 @@ class User(models.Model):
     password = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=100, null=True)
-    phone_num = models.IntegerField(null=True)
+    phone_num = models.CharField(max_length=100, null=True)
     birth = models.DateField(null=True)
 
 #家族顧客情報テーブル

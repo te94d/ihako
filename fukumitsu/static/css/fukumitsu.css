@@ -95,7 +95,7 @@ form input, form input, textarea {
   width: 100%;
 }
 
-.admin form input, form input, textarea, .admin select {
+.admin form input, form input, textarea, select {
   margin: 15px auto;
   padding: 8px;
   font-size: 20px;
@@ -115,7 +115,7 @@ form input, form input, textarea {
   font-size: 35px;
 }
 
-/* .member-contents {
+.member-contents {
   margin: 50px auto;
   font-size: 20px;
   width: 80%;
@@ -138,4 +138,70 @@ form input, form input, textarea {
 
 .member-contents .member-items td {
   width: 60%;
-} */
+} 
+
+.regi-contents .regi-items input{
+  margin-top: 0px;
+}
+.regi-contents .regi-items p {
+  text-align: left;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+.regi-contents strong ,.red {
+  color: red;
+}
+
+.search p label{
+  text-align: left;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.sigh-container {
+  display: flex;
+}
+
+.sigh-container img {
+  width: 50%;
+  padding: 0 40px;
+  height: 400px;
+  object-fit: cover;
+}
+
+.sigh-container .sigh-box {
+  width: 50%;
+  margin: auto 0;
+}
+
+.sigh-container .sigh-box li {
+  font-size: 20px;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 10px;
+}
+
+.sigh-container {
+  margin-top: 60px;
+}
+
+.reserve img {
+  margin-top: 20px;
+  max-width: 700px;
+  width: 100%;
+}
+
+.res-text {
+  font-size: 20px;
+}
+
+.room img {
+  width: 80%;
+}
+
+.resfin {
+  font-size: 20px;
+}
+
+.meminfo {
+  font-size: 20px;
+}
