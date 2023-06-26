@@ -160,7 +160,7 @@ def register_check(request):
             "email_address":request.session['email_address'],
             "password":request.session['password'],
             "birth":request.session['birth'],
-            "address":request.session['birth'],
+            "address":request.session['address'],
             "phone_num":request.session['phone_num'],
             "session":0,
         }
